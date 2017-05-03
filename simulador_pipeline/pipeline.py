@@ -131,15 +131,15 @@ def loadInputFile(pathfile):
 
 		# caso abriu o arquivo de entrada
 		with input_file:
-			for (line, instruction) in enumerate(input_file):
+			line = 1
+			for (index, instruction) in enumerate(input_file):
 				# testa se a instrução é permitida
 				if instruction.split(SEP)[0] in INST_ALLOW or ':' in instruction.split(SEP)[0]:
-					line += 1;
 					instruction = instruction.replace('\n', '')
-					instruction = instruction.replace('$zero', '$00')
 					# preenche a lista de instruções
 					INST_LIST.insert(line, instruction)
 					# preenche o dicionario de instruções
+					instruction = instruction.replace('$zero', '$00')
 					instruction = instruction.replace(',', '')
 					inst_parts = instruction.split(SEP)
 					if inst_parts[0] in ['lw', 'sw']:
@@ -148,11 +148,11 @@ def loadInputFile(pathfile):
 					if ':' in inst_parts[0]:
 						label = inst_parts[0].replace(':','')
 						LABEL_DIC[label] = line
-						INST_DIC[line] = [label]+inst_parts[1:]
+						# INST_DIC[line] = [label]
 					else:
 						INST_DIC[line] = ['']+inst_parts
-
-					INST_QTD += 1
+						line += 1
+						INST_QTD += 1
 				else:
 					print 'Instruction/Label not allowed: %s' % (instruction.split(SEP)[0])
 					print 'Allowed instructions: %s' % (INST_ALLOW)
@@ -233,11 +233,11 @@ def writePipelineOutput(clocks, stages):
 	file = open(OUTPUT+EXT, 'a')
 	out = '--------------------------------------------\n'
 	out += 'Clock #%s:\n' % (clocks)
-	out += 'IF:%s%s\n' % (TAB, INST_LIST[int(stages['IF'])] if type(stages['IF']) == int else stages['IF'].replace('end','0'))
-	out += 'ID:%s%s\n' % (TAB, INST_LIST[int(stages['ID'])] if type(stages['ID']) == int else stages['ID'].replace('end','0'))
-	out += 'EX:%s%s\n' % (TAB, INST_LIST[int(stages['EX'])] if type(stages['EX']) == int else stages['EX'].replace('end','0'))
-	out += 'MEM:%s%s\n' % (TAB, INST_LIST[int(stages['MEM'])] if type(stages['MEM']) == int else stages['MEM'].replace('end','0'))
-	out += 'WB:%s%s\n' % (TAB, INST_LIST[int(stages['WB'])] if type(stages['WB']) == int else stages['WB'].replace('end','0'))
+	out += 'IF:%s%s%s\n' % (TAB, INST_LIST[int(stages['IF'])] if type(stages['IF']) == int else stages['IF'].replace('end','0'), ('\t(PC='+str(stages['IF'])+')') if type(stages['IF']) == int else '')
+	out += 'ID:%s%s%s\n' % (TAB, INST_LIST[int(stages['ID'])] if type(stages['ID']) == int else stages['ID'].replace('end','0'), ('\t(PC='+str(stages['ID'])+')') if type(stages['ID']) == int else '')
+	out += 'EX:%s%s%s\n' % (TAB, INST_LIST[int(stages['EX'])] if type(stages['EX']) == int else stages['EX'].replace('end','0'), ('\t(PC='+str(stages['EX'])+')') if type(stages['EX']) == int else '')
+	out += 'MEM:%s%s%s\n' % (TAB, INST_LIST[int(stages['MEM'])] if type(stages['MEM']) == int else stages['MEM'].replace('end','0'), ('\t(PC='+str(stages['MEM'])+')') if type(stages['MEM']) == int else '')
+	out += 'WB:%s%s%s\n' % (TAB, INST_LIST[int(stages['WB'])] if type(stages['WB']) == int else stages['WB'].replace('end','0'), ('\t(PC='+str(stages['WB'])+')') if type(stages['WB']) == int else '')
 	file.write(out)
 	file.close()
 

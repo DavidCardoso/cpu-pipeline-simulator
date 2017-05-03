@@ -1,5 +1,6 @@
 beq $s0, $s1, DENTRO
 add $t1, $t2, $t3
 lw $t0, 128($t1)
-DENTRO: sub $t1, $t2, $t3
+DENTRO: 
+sub $t1, $t2, $t3
 add $s5, $t1, $t4
