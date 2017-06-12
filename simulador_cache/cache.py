@@ -23,24 +23,24 @@ from time import sleep 					# sleep 		- pausa a execução da thread atual
 """Variáveis"""
 # negrito
 BOLD 		= '\033[1m'
-# cor padrão para impressões no terminal		
-NORMAL 		= '\033[0;0m'		
+# cor padrão para impressões no terminal
+NORMAL 		= '\033[0;0m'
 # cor verde para destacar impressões no terminal
-GREEN 		= BOLD+'\033[32m'	
+GREEN 		= BOLD+'\033[32m'
 # cor azul para destacar impressões no terminal
-BLUE 		= BOLD+'\033[34m'	
+BLUE 		= BOLD+'\033[34m'
 # cor branca para destacar impressões no terminal
-WHITE 		= BOLD+'\033[37m'	
+WHITE 		= BOLD+'\033[37m'
 # cor amarela para destacar impressões no terminal
-YELLOW 		= BOLD+'\033[93m'	
+YELLOW 		= BOLD+'\033[93m'
 # cor vermelha para destacar impressões no terminal
-RED 		= BOLD+'\033[91m' 
+RED 		= BOLD+'\033[91m'
 
 # quebra de linha
 ENDL 		= "\n"
-# tabulação	
+# tabulação
 TAB 		= "\t"
-# opção de ação do programa	
+# opção de ação do programa
 ARG_OPTION  = ""
 # diretório/arquivo de entrada
 ARG_PATH 	= ""
@@ -50,8 +50,8 @@ MAX_SIZE 	= 1048576
 OUTPUT 		= datetime.now().strftime('%Y%m%d%H%M%S')
 # extensão do arquivo de saída
 EXT 		= ".txt"
-# separador	
-SEP 		= " " 
+# separador
+SEP 		= " "
 
 # lista de instruções permitidas
 INST_ALLOW 	= ['add', 'sub', 'beq', 'bne', 'lw', 'sw', 'j']
@@ -65,7 +65,7 @@ LABEL_DIC	= {}
 REG_LOCK 	= []
 # dicionário de estágios do pipeline
 PIPE_STAGES = {'IF' : '0', 'ID' : '0', 'EX' : '0', 'MEM' : '0', 'WB' : '0'}
-# dicionário de regras de dependências 
+# dicionário de regras de dependências
 # instrução anterior (parent) é necessária para a seguinte (child) nos operadores 2, 3 e/ou 4
 INST_DEP	= {
 	'add' 	: {'add':[3,4], 'sub':[3,4], 'lw':[3], 'sw':[2], 'beq':[2,3], 'bne':[2,3],},
