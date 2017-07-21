@@ -9,7 +9,7 @@
 #	@date		03/05/2017
 #	@author		David Cardoso
 #	@copyright	2017 - All rights reserveds
-#	@sa 		http://projetos.imd.ufrn.br/davidcardoso-ti/imd0041/blob/master/simulador_pipeline/pipeline.py
+#	@sa 		https://github.com/davidcardoso-ti/cpu-pipeline-simulator/blob/master/pipeline.py
 
 import os, sys			# os, sys 		- recursos de sistema
 # import shutil 			# shutil 		- operações avançadas de sistema
