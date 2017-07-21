@@ -21,7 +21,7 @@ Informações sobre o programa
 - O programa foi implementado utilizando a linguagem de programação _Python_.
 - Orientações sobre a execução do programa:
 	- Via linha de comando, navegue até o diretório onde se localiza o arquivo **pipeline.py**.
-	- Pode-ser utilizar **./pipeline.py** ou **python pipeline.py** para executar o programa.
+	- Pode-se utilizar **./pipeline.py** ou **python pipeline.py** para executar o programa.
 	- É necessário passar um arquivo de entrada como argumento, por exemplo: **./pipeline.py input.txt**
 	- O arquivo de entrada deve conter um programa escrito em _Assembly_ no formato:
 		```
@@ -32,6 +32,6 @@ Informações sobre o programa
 		sub $t1, $t2, $t3
 		dd $s5, $t1, $t4
 		```
-	- Apenas as instruções **ADD, SUB, BEQ, BNE, LW, SW e J** são permitidas.
+	- Apenas as instruções **add, sub, beq, bne, lw, lw e j** são permitidas (em letras minúsculas).
 	- A instrução após algum LABEL deve vir na linha seguinte.
 	- Arquivos de entrada vazios, com instruções não permitidas ou maiores do que 1MB serão rejeitados.
